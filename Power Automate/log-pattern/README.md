@@ -107,6 +107,59 @@
 }
 ```
 
+
+### 項目の抽出方法
+| **プロパティ名**        | **書き方**                               | **説明**                                      |
+|-------------------------|------------------------------------------|----------------------------------------------|
+| FlowName               | `workflow()?['tags']?['flowDisplayName']`| フローの表示名（例: "Log pattern"）。           |
+| RunID                  | `workflow()?['run']?['name']`            | 実行の一意なID（例: "08584654411382593588998482279CU27"）。|
+| Workflow ID            | `workflow()?['id']`                      | ワークフローの一意なID（例: "/workflows/4b466fc61d994acc8a962da09abbd7df"）。|
+| Workflow Display Name  | `workflow()?['tags']?['flowDisplayName']`| ユーザーが設定したフローの表示名。              |
+| Environment Name       | `workflow()?['tags']?['environmentName']`| 実行環境の名前（例: "2a9f4a58-fb85-e21f-b72e-f1240ba74eb0"）。|
+| Trigger Type           | `workflow()?['tags']?['triggerType']`    | トリガーの種類（例: "Instant"）。              |
+| Workflow State         | `workflow()?['tags']?['state']`          | フローが有効かどうか（例: "Enabled"）。         |
+
+---
+
+### **JSONに反映した例**
+```json:workflow
+{
+  "FlowName": "@{workflow()?['tags']?['flowDisplayName']}",
+  "RunID": "@{workflow()?['run']?['name']}",
+  "Workflow": {
+    "ID": "@{workflow()?['id']}",
+    "FlowDisplayName": "@{workflow()?['tags']?['flowDisplayName']}",
+    "EnvironmentName": "@{workflow()?['tags']?['environmentName']}",
+    "TriggerType": "@{workflow()?['tags']?['triggerType']}",
+    "State": "@{workflow()?['tags']?['state']}"
+  }
+}
+```
+
+### Actions
+`選択`アクションを使って値を設定する
+
+```json:From
+@{result('スコープ')}
+```
+
+```json:Map
+{
+  "Name": "@{item()?['name']}",
+  "StartTime": "@{item()?['startTime']}",
+  "EndTime": "@{item()?['endTime']}",
+  "Status": "@{item()?['status']}",
+  "Code": "@{item()?['code']}"
+}
+```
+
+#### 最終的な形式
+`作成(Compose)`で下記のようにまとめる
+
+```json:inputs
+@{addProperty(outputs('作成_workflow'),'Actions',body('選択'))}
+```
+
 3. **マーメイド図: フローの流れ**
 以下は、この子フローの実行を視覚化したマーメイド図です：
 
