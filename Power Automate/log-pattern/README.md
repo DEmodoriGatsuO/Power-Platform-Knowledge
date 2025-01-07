@@ -37,45 +37,15 @@
    - ファイル名形式: `FlowLog_{RunID}.json`
    - 保存場所: SharePointの指定されたドキュメントライブラリ。
 
-### Example
+## Flow
 1. 親フローでの呼び出し
-   親フロー内で `GenerateJSONLog` を呼び出し、必要な引数を設定します。
+   親フローから下記を渡す
+   - [jsonのログオブジェクト](#jsonのログオブジェクト)
+   - FlowName `workflow()?['tags']?['flowDisplayName']`
+   - RunID `workflow()?['id']`
+   - ExecutionDateTime `utcNow()`
 
-```json
-{
-  "FlowName": "Sample Parent Flow",
-  "RunID": "a1b2c3d4-e5f6-7890-gh12-i3j4k5l6m7n8",
-  "ExecutionDateTime": "2025-01-06T12:34:56Z",
-  "WorkflowData": {
-    "id": "/workflows/4b466fc61d994acc8a962da09abbd7df",
-    "tags": {
-      "flowDisplayName": "Log pattern",
-      "environmentName": "2a9f4a58-fb85-e21f-b72e-f1240ba74eb0",
-      "triggerType": "Instant",
-      "state": "Enabled"
-    }
-  },
-  "ActionResults": [
-    {
-      "name": "作成",
-      "startTime": "2025-01-06T12:15:47.5077191Z",
-      "endTime": "2025-01-06T12:15:47.5082089Z",
-      "status": "Succeeded",
-      "code": "OK"
-    },
-    {
-      "name": "作成_parallel",
-      "startTime": "2025-01-06T12:15:47.5354023Z",
-      "endTime": "2025-01-06T12:15:47.5358414Z",
-      "status": "Succeeded",
-      "code": "OK"
-    }
-  ]
-}
-```
-
-2. JSONログ生成の結果
-
+### jsonのログオブジェクト(例)
 
 ```json
 {
@@ -121,7 +91,7 @@
 
 ---
 
-### **JSONに反映した例**
+### workflow 関数から値を取得する
 ```json:workflow
 {
   "FlowName": "@{workflow()?['tags']?['flowDisplayName']}",
@@ -136,7 +106,8 @@
 }
 ```
 
-### Actions
+### result 関数の値を選択する(Actions)
+
 `選択`アクションを使って値を設定する
 
 ```json:From
@@ -153,7 +124,7 @@
 }
 ```
 
-#### 最終的な形式
+### ログの完成系
 `作成(Compose)`で下記のようにまとめる
 
 ```json:inputs
