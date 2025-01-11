@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #dee2e6;
+            text-align: left;
+        }
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        tbody tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>点検内容</th>
+                <th style="width: 100px;">担当者名</th>
+                <th style="min-width: 200px;">備考</th>
+                <th style="width: 120px;">完了日</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>エレベーターの点検</td>
+                <td>田中次郎</td>
+                <td>異常なし</td>
+                <td>2025/02/15</td>
+            </tr>
+            <tr>
+                <td>給排水設備の点検</td>
+                <td>高橋三郎</td>
+                <td>ポンプ交換実施</td>
+                <td>2025/02/16</td>
+            </tr>
+            <tr>
+                <td>照明設備の点検</td>
+                <td>伊藤四郎</td>
+                <td>蛍光灯交換実施</td>
+                <td>2025/02/17</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
