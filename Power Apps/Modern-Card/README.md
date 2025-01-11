@@ -101,8 +101,12 @@ With(
 - Power Apps Version: 2024-01
 - ブラウザ: Microsoft Edge, Google Chrome
 
-## サンプル - アクティブ
-<!-- 選択状態のカード -->
+## プレビュー
+
+### 選択状態
+
+カードが選択されている場合の表示例：
+
 <div style="padding:1rem;border-radius:0.5rem;border:1px solid rgb(209,213,219);background:rgb(249,250,251);">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
         <span style="font-size:0.875rem;color:rgb(75,85,99);">総ユーザー数</span>
@@ -111,8 +115,10 @@ With(
     <div style="font-size:1.5rem;font-weight:bold;">24,583</div>
 </div>
 
-## サンプル - 非アクティブ
-<!-- 非選択状態のカード -->
+### 非選択状態
+
+カードが選択されていない場合の表示例：
+
 <div style="padding:1rem;border-radius:0.5rem;border:1px solid rgb(229,231,235);background:white;">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
         <span style="font-size:0.875rem;color:rgb(75,85,99);">総ユーザー数</span>
@@ -120,3 +126,4 @@ With(
     </div>
     <div style="font-size:1.5rem;font-weight:bold;">24,583</div>
 </div>
+
