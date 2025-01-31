@@ -1,0 +1,107 @@
+- conTable:
+    Control: GroupContainer
+    Variant: horizontalAutoLayoutContainer
+    Properties:
+      Height: =Parent.Height - Self.Y
+      LayoutDirection: =LayoutDirection.Vertical
+      LayoutMode: =LayoutMode.Auto
+      LayoutOverflowX: =LayoutOverflow.Scroll
+      LayoutOverflowY: =LayoutOverflow.Scroll
+      Width: =Parent.Width
+      X: =conHeader.X
+    Children:
+    - conHeader:
+        Control: GroupContainer
+        Variant: horizontalAutoLayoutContainer
+        Properties:
+          AlignInContainer: =AlignInContainer.SetByContainer
+          FillPortions: =0
+          Height: =44
+          LayoutMinHeight: =htmHeader.Height
+          LayoutMode: =LayoutMode.Auto
+          Width: =1400
+        Children:
+        - htmHeader:
+            Control: HtmlViewer
+            Properties:
+              HtmlText: |+
+                =With(
+                    {
+                        TableBorder: "border-bottom: 1px solid #E1E5EA; padding: 10px; text-align: center;",
+                        HeaderStyle: "border-bottom: 2px solid #E1E5EA; padding: 14px; background: #F5F7F9; color: #222; font-weight: bold; text-align: left; border-radius: 8px 8px 0 0; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);",
+                        IDStyle: "width: 5%; min-width: 50px; border-bottom: 1px solid #E1E5EA; padding: 10px; text-align: center; border-radius: 4px 0 0 4px;",
+                        ProductNameStyle: "width: 20%; min-width: 180px; border-bottom: 1px solid #E1E5EA; padding: 10px; word-break: break-word;",
+                        DescriptionStyle: "width: 25%; min-width: 250px; border-bottom: 1px solid #E1E5EA; padding: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;",
+                        DateStyle: "width: 15%; min-width: 100px; border-bottom: 1px solid #E1E5EA; padding: 10px; text-align: center;",
+                        PriceStyle: "width: 10%; min-width: 80px; border-bottom: 1px solid #E1E5EA; padding: 10px; text-align: right;",
+                        CategoryStyle: "width: 15%; min-width: 130px; border-bottom: 1px solid #E1E5EA; padding: 10px; text-align: left; border-radius: 0 4px 4px 0;"
+                    },
+                    $"
+                    <table style='width: 100%; border-collapse: collapse; border-bottom: 1px solid #E1E5EA;'>
+                        <thead>
+                            <tr>
+                                <th style='{IDStyle}'>No.</th>
+                                <th style='{ProductNameStyle}'>商品名</th>
+                                <th style='{DescriptionStyle}'>説明</th>
+                                <th style='{DateStyle}'>日付</th>
+                                <th style='{PriceStyle}'>価格</th>
+                                <th style='{CategoryStyle}'>カテゴリ</th>
+                            </tr>
+                        </thead>
+                    </table>"
+                )
+              AutoHeight: =true
+              Height: =44
+              PaddingBottom: =0
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              Width: =conHeader.Width
+    - galBody:
+        Control: Gallery
+        Variant: galleryVertical
+        Properties:
+          Items: =YourCollection
+          DelayItemLoading: =true
+          Layout: =Layout.Vertical
+          LoadingSpinner: =LoadingSpinner.Data
+          TemplatePadding: =0
+          TemplateSize: =44
+          Width: =conHeader.Width
+        Children:
+        - htmRow:
+            Control: HtmlViewer
+            Properties:
+              OnSelect: =Select(Parent)
+              HtmlText: |+
+                =With(
+                    {
+                        IDStyle: "width: 5%; border-bottom: 1px solid #ddd; border-right: 1px solid #ddd; padding: 8px; text-align: center;",
+                        ProductNameStyle: "width: 20%; border-bottom: 1px solid #ddd; border-right: 1px solid #ddd; padding: 8px; word-break: break-word;",
+                        DescriptionStyle: "width: 25%; border-bottom: 1px solid #ddd; border-right: 1px solid #ddd; padding: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;",
+                        DateStyle: "width: 15%; border-bottom: 1px solid #ddd; border-right: 1px solid #ddd; padding: 8px; text-align: center;",
+                        PriceStyle: "width: 10%; border-bottom: 1px solid #ddd; border-right: 1px solid #ddd; padding: 8px; text-align: right;",
+                        CategoryStyle: "width: 15%; border-bottom: 1px solid #ddd; border-right: 1px solid #ddd; padding: 8px; text-align: left;"
+                    },
+                    $"
+                    <table style='width: 100%; border-collapse: collapse; border-bottom: 1px solid #ddd; border-right: 1px solid #ddd;'>
+                        <tbody>
+                            <tr>
+                                <td style='{IDStyle}'>{ThisItem.ID}</td>
+                                <td style='{ProductNameStyle}'>
+                                    <a href='https://example.com/item/{ThisItem.ID}' target='_blank' style='color: #0078D7; text-decoration: none;'> {ThisItem.Column1} </a>
+                                </td>
+                                <td style='{DescriptionStyle}'>{ThisItem.Column2}</td>
+                                <td style='{DateStyle}'>{ThisItem.Column3}</td>
+                                <td style='{PriceStyle}'>¥{ThisItem.Column4}</td>
+                                <td style='{CategoryStyle}'>{ThisItem.Column5}</td>
+                            </tr>
+                        </tbody>
+                    </table>"
+                )
+              AutoHeight: =true
+              PaddingBottom: =0
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              Width: =conHeader.Width
